@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选</title>
+</head>
+<body>
+<form method="post" action="">
+    你爱好的运动是?<input type="checkbox" id="allBox">allBox
+    <br><br><br>
+    <input type="checkbox" name="items" value="足球">足球 &nbsp;&nbsp;
+    <input type="checkbox" name="items" value="篮球">篮球 &nbsp;&nbsp;
+    <input type="checkbox" name="items" value="乒乓球">乒乓球 &nbsp;&nbsp;
+    <input type="checkbox" name="items" value="网球">网球
+    <br><br><br>
+    <input type="button" id="allBtn" value="全选">
+    <input type="button" id="noBtn" value="全不选">
+    <input type="button" id="reBtn" value="反选">
+    <input type="button" id="sendBtn" value="提交">
+</form>
+
+<script>
+
+    window.onload = function () {
+        let items = document.getElementsByName("items");  //获取四个框的items
+        //全选按钮
+        let allBtn = document.getElementById("allBtn");
+        allBtn.onclick = function () {
+            //设置多选框都为选中状态
+            for (let i = 0; i < items.length; i++) {
+                items[i].checked = true   //框都被选中
+                allBox.checked = true
+            }
+        }
+
+        //全不选
+        let no = document.getElementById("noBtn")
+        no.onclick = function () {
+            for (let i = 0; i < items.length; i++) {
+                items[i].checked = false
+                allBox.checked = false
+            }
+
+        }
+
+        //反选
+        let re = document.getElementById("reBtn")
+        re.onclick = function () {
+            for (let i = 0; i < items.length; i++) {
+                items[i].checked = !items[i].checked
+            }
+
+        }
+
+        //提交
+        let send = document.getElementById("sendBtn")
+        send.onclick = function () {
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].checked){
+                    alert(items[i].value)
+                }
+            }
+
+        }
+
+
+        let allBox = document.getElementById("allBox")
+        allBox.onclick = function () {
+            for (let i = 0; i < items.length; i++) {
+                items[i].checked = this.checked
+            }
+        }
+
+
+        //给四个多选框都绑定click
+        for (let i = 0; i < items.length; i++) {
+            items[i].onclick = function () {
+                allBox.checked = true
+                for (let j = 0; j < items.length; j++){
+                    if (!items[j].checked){   //一旦进入判断状态则证明不是全选状态
+                        allBox.checked = false
+                        break ;
+                    }  //这一组好好看几遍嗷
+                }
+            }
+        }
+    }
+     all=document.getElementsByTagName("*")
+</script>
+</body>
+</html>

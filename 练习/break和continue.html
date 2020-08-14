@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>break和continue</title>
+</head>
+<body>
+
+</body>
+<script>
+    //break用来退出switch或循环语句.不能用于if .只会终止一层循环(离它最近的) .可以为循环语句创建一个label,来表示当前循环 .
+
+    //label(标记): 循环语句   使用break时,可以在break后跟着一个label,这样就会结束指定的循环,而不是最近的 .
+    outer:
+        for (let i = 0; i < 10; i++) {
+            console.log(i);
+            for (let j = 0; j < 5; j++) {
+                break outer ;
+                console.log(j);  //指定结束外层循环
+            }
+        }
+
+//**continue**(继续) : 可以用来跳过本次循环 . 默认只会对离他最近的循环起作用
+
+
+
+    let flag = true
+    for (let i = 2; i <=100; i++) {  //打印2-100之间所有的数
+        //判断i是否是质数
+        for (let j = 2; j < i; j++) {
+            if (i%j == 0){  //判断i能否被j整除
+                //如果进入此判断则证明i不是质数
+                //由于需要性能的提升,简化不必要的程序,这里可以加break,一旦满足,证明i不是质数,再循环无意义,就直接跳过本次内层循环
+                flag = false
+                break ;
+            }
+        }
+        if (flag){
+            console.log(i);
+        }
+    }
+
+
+    //通过Math.sqrt();对一个数进行开方
+    // 进一步提升性能
+    let flag = true
+    for (let i = 2; i <=100; i++) {
+        for (let j = 2; j < Math.sqrt(i); j++) {  //缩小取值范围
+            if (i%j == 0){
+                flag = false
+                break ;
+            }
+        }
+        if (flag){
+            console.log(i);
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for</title>
+</head>
+<body>
+
+</body>
+<script>
+    let count = 0;
+    for (let i = 1 ; i <= 100 ; i++){
+        if (i%2 != 0){
+            count = count + i
+        }
+    }
+    console.log(count)
+
+
+    //7的倍数
+    let co = 0;
+    let num = 0;
+    for (let i = 0; i <= 100 ; i++) {
+        if (i % 7 == 0){
+            num += i
+            co++
+        }
+    }
+    console.log(co,num)
+
+
+    //水仙花数
+    for (let i = 100; i < 1000; i++) {
+        //先获取十位百位数字
+        let bai = Math.floor(i/100);
+        let shi = Math.floor((i-bai*100)/10);
+        let ge = i % 10;
+        if (bai*bai*bai + shi*shi*shi + ge*ge*ge == i){
+            console.log(i);
+        }
+    }
+
+
+
+    //判断是否为质数
+    let num = prompt("请输入一个大于1的整数:")
+    let flag = true ;
+    if (num < 1){
+        alert("该值不合法!")
+    }else {
+        for (let i = 2; i < num; i++) {
+            if (num % i == 0){  //判断是否能被i整除
+                flag = false
+                //如果num能被i整除,说明num一定不是质数,此时设flag为false
+            }
+        }
+    }
+    if (flag){  //如果不能被整除时就进不了循环改不了false,所以直接写flag就行
+        alert(num + "是质数")
+    }else {
+        alert(num + "不是质数")
+    }
+
+
+    //输出100以内所有的质数
+    let flag = true
+    for (let i = 2; i <=100; i++) {  //打印2-100之间所有的数
+        //判断i是否是质数
+        for (let j = 2; j < i; j++) {
+            if (i%j == 0){  //判断i能否被j整除
+                //如果进入此判断则证明i不是质数
+                flag = false
+            }
+        }
+        if (flag){
+            console.log(i);
+        }
+    }
+
+
+
+    //for循环嵌套
+    for (let i = 0; i < 5; i++) {  //外层循环控制行数
+        for (let j = 0; j < 7; j++) {  //内层循环控制行内个数
+            document.write("*")
+        }
+        document.write("<br>")
+    }
+
+    //外层执行一次内层执行n次,for嵌套就是这么个原理
+
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < i+1; j++) {  //因为每行行内个数不一样,所以就不能把数写死,得是一个变数
+            document.write("*")
+        }
+        document.write("<br>")
+    }
+
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5-i; j++) {  //要图形不一样,直接改条件就行
+            document.write("*")
+        }
+        document.write("<br>")
+    }
+
+
+    //打印九九乘法表
+    //外层循环控制高度  内层循环控制宽度
+    for (let i = 1; i <= 9; i++) {
+        for (let j = 1; j <= 1; j++) {
+           document.write("<span>" + j + "*" + i + "=" + j*i+ "</span>")
+        }
+        document.write("<br>")
+    }
+ //fori   forin  两个简写式
+</script>
+<style>
+    span{
+        display: inline-block;
+        width: 80px;
+    }
+</style>
+</html>

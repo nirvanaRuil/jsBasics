@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去重练习</title>
+</head>
+<body>
+
+</body>
+<script>
+    let arr = [1,2,3,2,2,3,4,2,5]  //创建一个数组
+    //去除重复数字
+    arr.splice(3,3)
+    arr.splice(4,1)
+    console.log(arr);  //简单方法,因为这刚好连着的,所以算是有点取巧
+
+    
+    //这是正常方法
+    for (let i = 0; i < arr.length; i++) {  //获取当前元素
+        console.log(arr[i]);
+        for (let j = i+1; j < arr.length; j++) {  //获取当前元素后的所有元素
+            console.log(arr[j]);
+            if (arr[i] == arr[j]){
+                //如果相等则证明出现了重复的元素
+                arr.splice(j,1);  //当前删除元素删除之后后面元素会顶上来,所以当前位置还需要再判断一次
+                j-- ;//使其自减1,回到原位置再判断
+            }
+        }
+    }
+    console.log(arr);
+
+    //好像用while也可以 ?
+    //思路是循环嵌套,获取当前元素之后,再嵌套子循环查看当前元素后所有元素有无和当前元素重复
+</script>
+</html>
